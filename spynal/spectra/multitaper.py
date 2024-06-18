@@ -306,7 +306,7 @@ def multitaper_spectrogram(data, smp_rate, axis=0, data_type='lfp', spec_type='c
 
         step = int(np.ceil(win_starts.shape[0]/nbins))
         i = 0
-        while (i+1)+step+1 < ntps:
+        while (i+1)*step + 1 < win_starts.shape[0]:
             i_win_starts = win_starts[i*step:(i+1)*step,...]
             d = _extract_triggered_data(data, smp_rate, i_win_starts, [0,window])
             if removeDC: d = remove_dc(d, axis=0)
